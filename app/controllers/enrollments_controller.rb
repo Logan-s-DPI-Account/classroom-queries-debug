@@ -10,9 +10,9 @@ class EnrollmentsController < ApplicationController
   def show
     the_id = params.fetch("path_id")
 
-    matching_enrollments = Enrollment.where({ :id => the_id })
+    matching_enrollments = Enrollment.where({ :id => the_id }).at(0)
 
-    @the_enrollment = matching_enrollments.at(0)
+    @the_enrollment = matching_enrollments
 
     render({ :template => "enrollments/show.html.erb" })
   end
